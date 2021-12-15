@@ -8,8 +8,7 @@ namespace Northwind.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Region> builder)
         {
-            builder.HasKey(e => e.RegionId)
-                .IsClustered(false);
+            builder.HasKey(e => e.RegionId);
 
             builder.Property(e => e.RegionId)
                 .HasColumnName("RegionID")
