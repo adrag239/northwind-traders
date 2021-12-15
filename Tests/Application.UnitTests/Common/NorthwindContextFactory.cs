@@ -18,9 +18,9 @@ namespace Northwind.Application.UnitTests.Common
             context.Database.EnsureCreated();
 
             context.Customers.AddRange(new[] {
-                new Customer { CustomerId = "ADAM", ContactName = "Adam Cogan" },
-                new Customer { CustomerId = "JASON", ContactName = "Jason Taylor" },
-                new Customer { CustomerId = "BREND", ContactName = "Brendan Richards" },
+                new Customer { CustomerId = "ADAM", ContactName = "Adam Cogan", CompanyName = "Northwind" },
+                new Customer { CustomerId = "JASON", ContactName = "Jason Taylor", CompanyName = "Northwind" },
+                new Customer { CustomerId = "BREND", ContactName = "Brendan Richards", CompanyName = "Northwind" },
             });
 
             context.Orders.Add(new Order
