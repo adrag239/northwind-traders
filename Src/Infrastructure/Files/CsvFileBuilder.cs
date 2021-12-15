@@ -13,8 +13,7 @@ namespace Northwind.Infrastructure.Files
             using var memoryStream = new MemoryStream();
             using (var streamWriter = new StreamWriter(memoryStream))
             {
-                using var csvWriter = new CsvWriter(streamWriter);
-                csvWriter.Configuration.RegisterClassMap<ProductFileRecordMap>();
+                using var csvWriter = new CsvWriter(streamWriter, System.Globalization.CultureInfo.CurrentCulture);
                 csvWriter.WriteRecords(records);
             }
 

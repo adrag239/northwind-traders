@@ -77,7 +77,6 @@ namespace Northwind.WebUI
             if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
                 RegisteredServicesPage(app);
             }
             else
