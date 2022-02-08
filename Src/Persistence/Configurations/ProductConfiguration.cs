@@ -29,6 +29,10 @@ namespace Northwind.Persistence.Configurations
             builder.Property(e => e.UnitsInStock).HasDefaultValueSql("((0))");
 
             builder.Property(e => e.UnitsOnOrder).HasDefaultValueSql("((0))");
+
+            builder.Property(e => e.Created).HasColumnType("datetime");
+
+            builder.Property(e => e.LastModified).HasColumnType("datetime");
         }
     }
 }
