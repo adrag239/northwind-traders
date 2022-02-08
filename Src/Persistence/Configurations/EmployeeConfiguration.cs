@@ -46,6 +46,10 @@ namespace Northwind.Persistence.Configurations
 
             builder.Property(e => e.TitleOfCourtesy).HasMaxLength(25);
 
+            builder.Property(e => e.Created).HasColumnType("datetime");
+
+            builder.Property(e => e.LastModified).HasColumnType("datetime");
+
             builder.HasOne(d => d.Manager)
                 .WithMany(p => p.DirectReports)
                 .HasForeignKey(d => d.ReportsTo)

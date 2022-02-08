@@ -7,32 +7,36 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Northwind.Persistence;
 
+#nullable disable
+
 namespace Northwind.Persistence.Migrations
 {
     [DbContext(typeof(NorthwindDbContext))]
-    [Migration("20190916050546_EmployeeUserIds")]
-    partial class EmployeeUserIds
+    [Migration("20211215125005_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0-preview9.19423.6")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Northwind.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("CategoryID")
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("CategoryID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Description")
                         .HasColumnType("ntext");
@@ -48,50 +52,50 @@ namespace Northwind.Persistence.Migrations
             modelBuilder.Entity("Northwind.Domain.Entities.Customer", b =>
                 {
                     b.Property<string>("CustomerId")
-                        .HasColumnName("CustomerID")
+                        .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)")
-                        .HasMaxLength(5);
+                        .HasColumnName("CustomerID");
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("City")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("ContactName")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("ContactTitle")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Country")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Fax")
-                        .HasColumnType("nvarchar(24)")
-                        .HasMaxLength(24);
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(24)")
-                        .HasMaxLength(24);
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Region")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("CustomerId");
 
@@ -102,24 +106,25 @@ namespace Northwind.Persistence.Migrations
                 {
                     b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("EmployeeID")
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("EmployeeID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"), 1L, 1);
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime");
 
                     b.Property<string>("City")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Country")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -128,20 +133,20 @@ namespace Northwind.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Extension")
-                        .HasColumnType("nvarchar(4)")
-                        .HasMaxLength(4);
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime?>("HireDate")
                         .HasColumnType("datetime");
 
                     b.Property<string>("HomePhone")
-                        .HasColumnType("nvarchar(24)")
-                        .HasMaxLength(24);
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
@@ -151,8 +156,8 @@ namespace Northwind.Persistence.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Notes")
                         .HasColumnType("ntext");
@@ -161,27 +166,27 @@ namespace Northwind.Persistence.Migrations
                         .HasColumnType("image");
 
                     b.Property<string>("PhotoPath")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Region")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int?>("ReportsTo")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("TitleOfCourtesy")
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
@@ -196,16 +201,15 @@ namespace Northwind.Persistence.Migrations
             modelBuilder.Entity("Northwind.Domain.Entities.EmployeeTerritory", b =>
                 {
                     b.Property<int>("EmployeeId")
-                        .HasColumnName("EmployeeID")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("EmployeeID");
 
                     b.Property<string>("TerritoryId")
-                        .HasColumnName("TerritoryID")
+                        .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnName("TerritoryID");
 
-                    b.HasKey("EmployeeId", "TerritoryId")
-                        .HasAnnotation("SqlServer:Clustered", false);
+                    b.HasKey("EmployeeId", "TerritoryId");
 
                     b.HasIndex("TerritoryId");
 
@@ -216,9 +220,10 @@ namespace Northwind.Persistence.Migrations
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("OrderID")
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("OrderID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -227,13 +232,13 @@ namespace Northwind.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerId")
-                        .HasColumnName("CustomerID")
+                        .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)")
-                        .HasMaxLength(5);
+                        .HasColumnName("CustomerID");
 
                     b.Property<int?>("EmployeeId")
-                        .HasColumnName("EmployeeID")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("EmployeeID");
 
                     b.Property<decimal?>("Freight")
                         .ValueGeneratedOnAdd()
@@ -253,28 +258,28 @@ namespace Northwind.Persistence.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("ShipAddress")
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("ShipCity")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("ShipCountry")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("ShipName")
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("ShipPostalCode")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("ShipRegion")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int?>("ShipVia")
                         .HasColumnType("int");
@@ -296,12 +301,12 @@ namespace Northwind.Persistence.Migrations
             modelBuilder.Entity("Northwind.Domain.Entities.OrderDetail", b =>
                 {
                     b.Property<int>("OrderId")
-                        .HasColumnName("OrderID")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("OrderID");
 
                     b.Property<int>("ProductId")
-                        .HasColumnName("ProductID")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ProductID");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -330,20 +335,21 @@ namespace Northwind.Persistence.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Order Details");
+                    b.ToTable("Order Details", (string)null);
                 });
 
             modelBuilder.Entity("Northwind.Domain.Entities.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("ProductID")
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("ProductID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
                     b.Property<int?>("CategoryId")
-                        .HasColumnName("CategoryID")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("CategoryID");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -362,12 +368,12 @@ namespace Northwind.Persistence.Migrations
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("QuantityPerUnit")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<short?>("ReorderLevel")
                         .ValueGeneratedOnAdd()
@@ -375,8 +381,8 @@ namespace Northwind.Persistence.Migrations
                         .HasDefaultValueSql("((0))");
 
                     b.Property<int?>("SupplierId")
-                        .HasColumnName("SupplierID")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("SupplierID");
 
                     b.Property<decimal?>("UnitPrice")
                         .ValueGeneratedOnAdd()
@@ -405,16 +411,15 @@ namespace Northwind.Persistence.Migrations
             modelBuilder.Entity("Northwind.Domain.Entities.Region", b =>
                 {
                     b.Property<int>("RegionId")
-                        .HasColumnName("RegionID")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("RegionID");
 
                     b.Property<string>("RegionDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("RegionId")
-                        .HasAnnotation("SqlServer:Clustered", false);
+                    b.HasKey("RegionId");
 
                     b.ToTable("Region");
                 });
@@ -423,18 +428,19 @@ namespace Northwind.Persistence.Migrations
                 {
                     b.Property<int>("ShipperId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("ShipperID")
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("ShipperID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShipperId"), 1L, 1);
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(24)")
-                        .HasMaxLength(24);
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.HasKey("ShipperId");
 
@@ -445,53 +451,54 @@ namespace Northwind.Persistence.Migrations
                 {
                     b.Property<int>("SupplierId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("SupplierID")
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("SupplierID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplierId"), 1L, 1);
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("City")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("ContactName")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("ContactTitle")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Country")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Fax")
-                        .HasColumnType("nvarchar(24)")
-                        .HasMaxLength(24);
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<string>("HomePage")
                         .HasColumnType("ntext");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(24)")
-                        .HasMaxLength(24);
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Region")
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("SupplierId");
 
@@ -501,21 +508,20 @@ namespace Northwind.Persistence.Migrations
             modelBuilder.Entity("Northwind.Domain.Entities.Territory", b =>
                 {
                     b.Property<string>("TerritoryId")
-                        .HasColumnName("TerritoryID")
+                        .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnName("TerritoryID");
 
                     b.Property<int>("RegionId")
-                        .HasColumnName("RegionID")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("RegionID");
 
                     b.Property<string>("TerritoryDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("TerritoryId")
-                        .HasAnnotation("SqlServer:Clustered", false);
+                    b.HasKey("TerritoryId");
 
                     b.HasIndex("RegionId");
 
@@ -528,6 +534,8 @@ namespace Northwind.Persistence.Migrations
                         .WithMany("DirectReports")
                         .HasForeignKey("ReportsTo")
                         .HasConstraintName("FK_Employees_Employees");
+
+                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("Northwind.Domain.Entities.EmployeeTerritory", b =>
@@ -535,14 +543,18 @@ namespace Northwind.Persistence.Migrations
                     b.HasOne("Northwind.Domain.Entities.Employee", "Employee")
                         .WithMany("EmployeeTerritories")
                         .HasForeignKey("EmployeeId")
-                        .HasConstraintName("FK_EmployeeTerritories_Employees")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_EmployeeTerritories_Employees");
 
                     b.HasOne("Northwind.Domain.Entities.Territory", "Territory")
                         .WithMany("EmployeeTerritories")
                         .HasForeignKey("TerritoryId")
-                        .HasConstraintName("FK_EmployeeTerritories_Territories")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_EmployeeTerritories_Territories");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Territory");
                 });
 
             modelBuilder.Entity("Northwind.Domain.Entities.Order", b =>
@@ -559,6 +571,12 @@ namespace Northwind.Persistence.Migrations
                         .WithMany("Orders")
                         .HasForeignKey("ShipVia")
                         .HasConstraintName("FK_Orders_Shippers");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Shipper");
                 });
 
             modelBuilder.Entity("Northwind.Domain.Entities.OrderDetail", b =>
@@ -566,14 +584,18 @@ namespace Northwind.Persistence.Migrations
                     b.HasOne("Northwind.Domain.Entities.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
-                        .HasConstraintName("FK_Order_Details_Orders")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_Order_Details_Orders");
 
                     b.HasOne("Northwind.Domain.Entities.Product", "Product")
                         .WithMany("OrderDetails")
                         .HasForeignKey("ProductId")
-                        .HasConstraintName("FK_Order_Details_Products")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_Order_Details_Products");
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Northwind.Domain.Entities.Product", b =>
@@ -585,6 +607,10 @@ namespace Northwind.Persistence.Migrations
                     b.HasOne("Northwind.Domain.Entities.Supplier", "Supplier")
                         .WithMany("Products")
                         .HasForeignKey("SupplierId");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("Northwind.Domain.Entities.Territory", b =>
@@ -592,8 +618,59 @@ namespace Northwind.Persistence.Migrations
                     b.HasOne("Northwind.Domain.Entities.Region", "Region")
                         .WithMany("Territories")
                         .HasForeignKey("RegionId")
-                        .HasConstraintName("FK_Territories_Region")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_Territories_Region");
+
+                    b.Navigation("Region");
+                });
+
+            modelBuilder.Entity("Northwind.Domain.Entities.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Northwind.Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Northwind.Domain.Entities.Employee", b =>
+                {
+                    b.Navigation("DirectReports");
+
+                    b.Navigation("EmployeeTerritories");
+
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Northwind.Domain.Entities.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("Northwind.Domain.Entities.Product", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("Northwind.Domain.Entities.Region", b =>
+                {
+                    b.Navigation("Territories");
+                });
+
+            modelBuilder.Entity("Northwind.Domain.Entities.Shipper", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Northwind.Domain.Entities.Supplier", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Northwind.Domain.Entities.Territory", b =>
+                {
+                    b.Navigation("EmployeeTerritories");
                 });
 #pragma warning restore 612, 618
         }

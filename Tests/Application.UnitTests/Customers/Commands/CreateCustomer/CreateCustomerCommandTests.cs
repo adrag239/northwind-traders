@@ -18,7 +18,7 @@ namespace Northwind.Application.UnitTests.Customers.Commands.CreateCustomer
             var newCustomerId = "QAZQ1";
 
             // Act
-            var result = sut.Handle(new CreateCustomerCommand { Id = newCustomerId }, CancellationToken.None);
+            var result = sut.Handle(new CreateCustomerCommand { Id = newCustomerId, CompanyName = "New Company" }, CancellationToken.None);
 
 
             // Assert

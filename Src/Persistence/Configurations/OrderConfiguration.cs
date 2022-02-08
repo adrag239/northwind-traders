@@ -38,6 +38,10 @@ namespace Northwind.Persistence.Configurations
 
             builder.Property(e => e.ShippedDate).HasColumnType("datetime");
 
+            builder.Property(e => e.Created).HasColumnType("datetime");
+
+            builder.Property(e => e.LastModified).HasColumnType("datetime");
+
             builder.HasOne(d => d.Shipper)
                 .WithMany(p => p.Orders)
                 .HasForeignKey(d => d.ShipVia)
